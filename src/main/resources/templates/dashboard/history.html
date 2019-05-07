@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+	<title>Room Booking</title>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Cantata+One" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Imprima" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<link type="text/css" rel="stylesheet" href="css/style2.css" />        
+
+	<style> 
+
+
+</style>
+
+</head>
+<body>
+	<div class="header">
+	  <a href="#default" class="logo">Room Booking</a>
+	  <div class="header-right">
+	    <a th:href="@{/}">Home</a>
+	    <a th:href="@{/history}" class="active">My Booking</a>
+	    <a th:href="@{/logout}">Sign Out</a>
+	  </div>
+	</div>
+
+	<div class="container">
+				<div th:each="b : ${booking}" class="row">
+					<div class="container col-md-12">
+						<div class="box history">
+							<div class="row">
+								<div class="row">
+									<h3 class="text-inside title-txt">GD <span th:text="${b.roomName}"></span></h3>
+								</div>
+								<div class="row">
+									<div class="col-md-4">
+										<span class="text-inside item-txt">Date		: 5 juni 2019</span>
+									</div>
+									<div class="col-md-4">
+										<span class="text-inside item-txt">Capacity		: <span th:text="${b.capacity}"></span></span>
+									</div>
+									<div class="col-md-4">
+										<span class="text-inside item-txt">Status		: <span th:text="${b.statusString}"></span></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			
+			</div>
