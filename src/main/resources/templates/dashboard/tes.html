@@ -1,22 +1,91 @@
 <!DOCTYPE html>
-<html>
-   <head>
-      <meta charset = "ISO-8859-1"/>
-      <title>View Products</title>
-      <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      
-      <script>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+	<title>Room Booking</title>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Cantata+One" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Imprima" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<link type="text/css" rel="stylesheet" href="css/style2.css" /> 
+	<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+
+	<script>
          $(document).ready(function(){
-            $.getJSON("http://localhost:9090/products", function(result){
-               $.each(result, function(key,value) {
-                  $("#productsJson").append(value.id+" "+value.name+" ");
+            $.getJSON("https://demo8903690.mockable.io/ruangans", function(result){
+               $.each(result.ArrayOfRuangan.Ruangan, function(key,value) {
+            	   var list = '<div class="row"><form action="#" th:action="@{/tes}" method="post" th:object="${booking}"><div class="container col-md-12"><div class="box history"><div class="row"><div class="row"><h3 class="text-inside title-txt">';
+            	   list += 'GD <input type="hidden" name="roomName" id="roomName" value="' + value.NamaRuangan + '">' + value.NamaRuangan + '</span></h3></div><div class="row"><div class="col-md-4"><span class="text-inside item-txt">';
+            	   list += 'Date : 5 juni 2019';
+            	   list += '</span></div><div class="col-md-4"><span class="text-inside item-txt">Capacity : <input type="hidden" name="capacity" id="capacity" value="' + value.KapasitasRuangan + '">' + value.KapasitasRuangan + '</span></span>';
+            	   list += '<input type="hidden" name="idRoom" id="idRoom" value="' + value.IDRuangan + '">'
+            	   list += '<input type="hidden" name="status" id="status" value="1"></div></div></div><input type="submit" value="Book" class ="btn booking-btn pull-right"></div></div></form></div>';
+            	   $("#list-ruangan").append($(list));
                }); 
             });
          });
       </script>
-   </head>
-   
-   <body>
-      <div id = "productsJson"> </div>
-   </body>
+	
+</head>
+<body>
+
+	<div class="header">
+	  <a href="#default" class="logo">Room Booking</a>
+	  <div class="header-right">
+	    <a th:href="@{/}" class="active">Home</a>
+	    <a th:href="@{/history}">My Booking</a>
+	    <a th:href="@{/logout}">Sign Out</a>
+	  </div>
+	</div>
+  
+	<div class="container list-search">
+		<div class="row">
+			<div class="booking-cta">
+				<h1>ROOM BOOKING</h1>
+				<h2>Make Your Reservation</h2>
+			</div>
+			<div class="booking-form">
+				<form>
+					
+					<div class="col-md-8">
+						<div class="form-group">
+							<span class="form-label">Reservation Date</span>
+							<input class="form-control" type="date" required>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-btn">
+							<button class="submit-btn">Check availability</button>
+						</div>
+					</div>
+				</form>
+				
+			</div>
+			
+		</div>
+		
+		<!-- LIST -->
+		
+		
+		<div id="list-ruangan">
+			
+		</div>
+		
+		<!-- END LIST -->
+		
+	</div>
+	
+</body>
+
 </html>

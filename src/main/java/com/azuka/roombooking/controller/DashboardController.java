@@ -10,14 +10,16 @@ public class DashboardController {
 	public String home() {
 		return "dashboard/index";
 	}
-	 */
 	
+		
 	
 	
 	@GetMapping("/tes")
 	public String search() {
 		return "dashboard/tes";
 	}
+	 */
+
 	
 	@GetMapping("/login")
 	public String login() {
