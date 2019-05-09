@@ -5,10 +5,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class DashboardController {
-	@GetMapping("/")
+	/*
+	 * @GetMapping("/")
 	public String home() {
 		return "dashboard/index";
 	}
+	 */
 	
 	
 	

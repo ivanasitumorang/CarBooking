@@ -51,8 +51,8 @@ public class Booking {
 		this.status = status;
 	}
 	
-	public void setStatusString() {
-		switch (this.getStatus()) {
+	public void setStatusString(Integer status) {
+		switch (status) {
 		case 1 :
 			this.statusString = "Waiting";
 			break;

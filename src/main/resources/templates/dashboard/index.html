@@ -18,12 +18,24 @@
 
 	<!-- Custom stlylesheet -->
 	<link type="text/css" rel="stylesheet" href="css/style.css" />
-	<link type="text/css" rel="stylesheet" href="css/style2.css" />        
+	<link type="text/css" rel="stylesheet" href="css/style2.css" /> 
+	<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
 
-	<style> 
-
-
-</style>
+	<script>
+         $(document).ready(function(){
+            $.getJSON("https://demo8903690.mockable.io/ruangans", function(result){
+               $.each(result.ArrayOfRuangan.Ruangan, function(key,value) {
+            	   var list = '<div class="row"><form action="#" method="post" th:object="${booking}"><div class="container col-md-12"><div class="box history"><div class="row"><div class="row"><h3 class="text-inside title-txt">';
+            	   list += 'GD <input type="hidden" name="roomName" id="roomName" value="' + value.NamaRuangan + '">' + value.NamaRuangan + '</span></h3></div><div class="row"><div class="col-md-4"><span class="text-inside item-txt">';
+            	   list += 'Date : 5 juni 2019';
+            	   list += '</span></div><div class="col-md-4"><span class="text-inside item-txt">Capacity : <input type="hidden" name="capacity" id="capacity" value="' + value.KapasitasRuangan + '">' + value.KapasitasRuangan + '</span></span>';
+            	   list += '<input type="hidden" name="idRoom" id="idRoom" value="' + value.IDRuangan + '">'
+            	   list += '<input type="hidden" name="status" id="status" value="1"></div></div></div><input type="submit" value="Book" class ="btn booking-btn pull-right"></div></div></form></div>';
+            	   $("#list-ruangan").append($(list));
+               }); 
+            });
+         });
+      </script>
 	
 </head>
 <body>
@@ -38,151 +50,41 @@
 	</div>
   
 	<div class="container list-search">
-					<div class="row">
-						<div class="booking-cta">
-							<h1>ROOM BOOKING</h1>
-							<h2>Make Your Reservation</h2>
-						</div>
-						<div class="booking-form">
-							<form>
-								
-								<div class="col-md-8">
-									<div class="form-group">
-										<span class="form-label">Reservation Date</span>
-										<input class="form-control" type="date" required>
-									</div>
-								</div>
-								<div class="col-md-4">
-									<div class="form-btn">
-										<button class="submit-btn">Check availability</button>
-									</div>
-								</div>
-							</form>
-							
-						</div>
-						
-					</div>
+		<div class="row">
+			<div class="booking-cta">
+				<h1>ROOM BOOKING</h1>
+				<h2>Make Your Reservation</h2>
+			</div>
+			<div class="booking-form">
+				<form>
 					
-					<!-- LIST -->
-					
-					<div class="row">
-						<div class="container col-md-12">
-							<div class="box history">
-								<div class="row">
-									<div class="row">
-										<h3 class="text-inside title-txt">GD 722</span></h3>
-									</div>
-									<div class="row">
-										<div class="col-md-4">
-											<span class="text-inside item-txt">Date		: 5 juni 2019</span>
-										</div>
-										<div class="col-md-4">
-											<span class="text-inside item-txt">Capacity		: 100</span></span>
-										</div>
-									</div>
-								</div>
-								<form action="" class="pull-right">
-										<input type="submit" name="booking" value="Book" class ="btn booking-btn">
-								</form>
-							</div>
+					<div class="col-md-8">
+						<div class="form-group">
+							<span class="form-label">Reservation Date</span>
+							<input class="form-control" type="date" required>
 						</div>
 					</div>
-					
-					<div class="row">
-						<div class="container col-md-12">
-							<div class="box history">
-								<div class="row">
-									<div class="row">
-										<h3 class="text-inside title-txt">GD 722</span></h3>
-									</div>
-									<div class="row">
-										<div class="col-md-4">
-											<span class="text-inside item-txt">Date		: 5 juni 2019</span>
-										</div>
-										<div class="col-md-4">
-											<span class="text-inside item-txt">Capacity		: 100</span></span>
-										</div>
-									</div>
-								</div>
-								<form action="" class="pull-right">
-										<input type="submit" name="booking" value="Book" class ="btn booking-btn">
-								</form>
-							</div>
+					<div class="col-md-4">
+						<div class="form-btn">
+							<button class="submit-btn">Check availability</button>
 						</div>
 					</div>
-					
-					<div class="row">
-						<div class="container col-md-12">
-							<div class="box history">
-								<div class="row">
-									<div class="row">
-										<h3 class="text-inside title-txt">GD 722</span></h3>
-									</div>
-									<div class="row">
-										<div class="col-md-4">
-											<span class="text-inside item-txt">Date		: 5 juni 2019</span>
-										</div>
-										<div class="col-md-4">
-											<span class="text-inside item-txt">Capacity		: 100</span></span>
-										</div>
-									</div>
-								</div>
-								<form action="" class="pull-right">
-										<input type="submit" name="booking" value="Book" class ="btn booking-btn">
-								</form>
-							</div>
-						</div>
-					</div>
-					
-					<div class="row">
-						<div class="container col-md-12">
-							<div class="box history">
-								<div class="row">
-									<div class="row">
-										<h3 class="text-inside title-txt">GD 722</span></h3>
-									</div>
-									<div class="row">
-										<div class="col-md-4">
-											<span class="text-inside item-txt">Date		: 5 juni 2019</span>
-										</div>
-										<div class="col-md-4">
-											<span class="text-inside item-txt">Capacity		: 100</span></span>
-										</div>
-									</div>
-								</div>
-								<form action="" class="pull-right">
-										<input type="submit" name="booking" value="Book" class ="btn booking-btn">
-								</form>
-							</div>
-						</div>
-					</div>
-					
-					<div class="row">
-						<div class="container col-md-12">
-							<div class="box history">
-								<div class="row">
-									<div class="row">
-										<h3 class="text-inside title-txt">GD 722</span></h3>
-									</div>
-									<div class="row">
-										<div class="col-md-4">
-											<span class="text-inside item-txt">Date		: 5 juni 2019</span>
-										</div>
-										<div class="col-md-4">
-											<span class="text-inside item-txt">Capacity		: 100</span></span>
-										</div>
-									</div>
-								</div>
-								<form action="" class="pull-right">
-										<input type="submit" name="booking" value="Book" class ="btn booking-btn">
-								</form>
-							</div>
-						</div>
-					</div>
-					
-					<!-- END LIST -->
-					
-				</div>
+				</form>
+				
+			</div>
+			
+		</div>
+		
+		<!-- LIST -->
+		
+		
+		<div id="list-ruangan">
+			
+		</div>
+		
+		<!-- END LIST -->
+		
+	</div>
 	
 </body>
 

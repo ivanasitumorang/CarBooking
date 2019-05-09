@@ -25,8 +25,15 @@ public class BookingController {
 		return "dashboard/history";
 	}
 	
-	@RequestMapping(value = "/booking/process", method = RequestMethod.POST)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String search(Model model) {
+		model.addAttribute("booking", new Booking());
+		return "dashboard/index";
+	}
+	
+	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public String book(Model model, Booking booking) {
+		booking.setStatusString(booking.getStatus());
 		model.addAttribute("booking", bookingService.addBooking(booking));
 		return "redirect:/";
 	}
