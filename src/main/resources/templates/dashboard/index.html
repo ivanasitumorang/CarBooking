@@ -16,26 +16,13 @@
 	<!-- Bootstrap -->
 	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
 
-	<!-- Custom stlylesheet -->
+	<!-- Custom stlylesheet <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 	<link type="text/css" rel="stylesheet" href="css/style.css" />
 	<link type="text/css" rel="stylesheet" href="css/style2.css" /> 
-	<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+	<script src = "js/jquery.min.js"></script> 
+	<script src = "js/moment.min.js"></script>
+	
 
-	<script>
-         $(document).ready(function(){
-            $.getJSON("https://demo8903690.mockable.io/ruangans", function(result){
-               $.each(result.ArrayOfRuangan.Ruangan, function(key,value) {
-            	   var list = '<div class="row"><form action="#" method="post" th:object="${booking}"><div class="container col-md-12"><div class="box history"><div class="row"><div class="row"><h3 class="text-inside title-txt">';
-            	   list += 'GD <input type="hidden" name="roomName" id="roomName" value="' + value.NamaRuangan + '">' + value.NamaRuangan + '</span></h3></div><div class="row"><div class="col-md-4"><span class="text-inside item-txt">';
-            	   list += 'Date : 5 juni 2019';
-            	   list += '</span></div><div class="col-md-4"><span class="text-inside item-txt">Capacity : <input type="hidden" name="capacity" id="capacity" value="' + value.KapasitasRuangan + '">' + value.KapasitasRuangan + '</span></span>';
-            	   list += '<input type="hidden" name="idRoom" id="idRoom" value="' + value.IDRuangan + '">'
-            	   list += '<input type="hidden" name="status" id="status" value="1"></div></div></div><input type="submit" value="Book" class ="btn booking-btn pull-right"></div></div></form></div>';
-            	   $("#list-ruangan").append($(list));
-               }); 
-            });
-         });
-      </script>
 	
 </head>
 <body>
@@ -56,20 +43,17 @@
 				<h2>Make Your Reservation</h2>
 			</div>
 			<div class="booking-form">
-				<form>
-					
 					<div class="col-md-8">
 						<div class="form-group">
 							<span class="form-label">Reservation Date</span>
-							<input class="form-control" type="date" required>
+							<input class="form-control" type="date" required id="date" name="date">
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="form-btn">
-							<button class="submit-btn">Check availability</button>
+							<button class="submit-btn" onclick="search()">Check availability</button>
 						</div>
 					</div>
-				</form>
 				
 			</div>
 			
@@ -85,6 +69,29 @@
 		<!-- END LIST -->
 		
 	</div>
+	<script>
+         function search(){
+        	 var date = document.getElementById('date').value;
+        	 $("#list-ruangan").html('');
+        	 if (date != ""){
+        		 $.getJSON("https://demo8903690.mockable.io/ruangans", function(result){
+                     $.each(result, function(key,value) {
+                  	   var list = '<div class="row"><form action="#" method="post" th:object="${booking}"><div class="container col-md-12"><div class="box history"><div class="row"><div class="row"><h3 class="text-inside title-txt">';
+                  	   list += 'GD <input type="hidden" name="roomName" id="roomName" value="' + value.NamaRuangan + '">' + value.NamaRuangan + '</span></h3></div><div class="row"><div class="col-md-4"><span class="text-inside item-txt">';
+                  	   list += '<input type="hidden" name="date" id="date" value="' + new Date(value.TanggalAvailable) + '">' + moment(value.TanggalAvailable).format('LL');
+                  	   list += '</span></div><div class="col-md-4"><span class="text-inside item-txt">Capacity : <input type="hidden" name="capacity" id="capacity" value="' + value.KapasitasRuangan + '">' + value.KapasitasRuangan + '</span></span>';
+                  	   list += '<input type="hidden" name="idRoom" id="idRoom" value="' + value.IDRuangan + '">'
+                  	   list += '<input type="hidden" name="status" id="status" value="1"></div></div></div><input type="submit" value="Book" class ="btn booking-btn pull-right"></div></div></form></div>';
+                  	   $("#list-ruangan").append($(list));
+                     }); 
+                  });
+        	 } else {
+        		 var list = '<div class="row"><div class="container col-md-12"><div class="box history"><div class="row"><h3 class="text-inside title-txt">';
+            	   list += 'Tidak ada data.</h3></div></div></div></div>';
+            	   $("#list-ruangan").append($(list));
+        	 }
+         }
+      </script>
 	
 </body>
 

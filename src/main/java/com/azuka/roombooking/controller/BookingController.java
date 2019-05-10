@@ -25,7 +25,8 @@ public class BookingController {
 		return "dashboard/history";
 	}
 	
-	@RequestMapping(value = "/tes", method = RequestMethod.GET)
+	/*
+	 @RequestMapping(value = "/tes", method = RequestMethod.GET)
 	public String search(Model model) {
 		model.addAttribute("booking", new Booking());
 		return "dashboard/tes";
@@ -37,9 +38,10 @@ public class BookingController {
 		model.addAttribute("booking", bookingService.addBooking(booking));
 		return "redirect:/tes";
 	}
+	 */
 	
-	/*
-	 @RequestMapping(value = "/", method = RequestMethod.GET)
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String search(Model model) {
 		model.addAttribute("booking", new Booking());
 		return "dashboard/index";
@@ -49,8 +51,7 @@ public class BookingController {
 	public String book(Model model, Booking booking) {
 		booking.setStatusString(booking.getStatus());
 		model.addAttribute("booking", bookingService.addBooking(booking));
-		return "redirect:/";
+		return "redirect:/history";
 	}
-	 */
 	
 }

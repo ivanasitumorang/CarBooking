@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity(name = "booking")
 public class Booking {
 	
@@ -71,6 +73,7 @@ public class Booking {
 		return statusString;
 	}
 	
+	@DateTimeFormat(pattern="dd MMMM YYYY")
 	public Date getDate() {
 		return date;
 	}

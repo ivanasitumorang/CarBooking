@@ -30,6 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		"/img/**",
 		"/scss/**",
 		"/vendor/**",
+		"/api/**",
 		"/css/**").permitAll()
 		.antMatchers("/","/dashboard/**").hasRole("USER")
 		.anyRequest().authenticated()
