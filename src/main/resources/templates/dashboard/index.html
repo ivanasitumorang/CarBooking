@@ -74,7 +74,7 @@
         	 var date = document.getElementById('date').value;
         	 $("#list-ruangan").html('');
         	 if (date != ""){
-        		 $.getJSON("https://demo8903690.mockable.io/ruangans", function(result){
+        		 $.getJSON("API ADDRESS/"+date, function(result){
                      $.each(result, function(key,value) {
                   	   var list = '<div class="row"><form action="#" method="post" th:object="${booking}"><div class="container col-md-12"><div class="box history"><div class="row"><div class="row"><h3 class="text-inside title-txt">';
                   	   list += 'GD <input type="hidden" name="roomName" id="roomName" value="' + value.NamaRuangan + '">' + value.NamaRuangan + '</span></h3></div><div class="row"><div class="col-md-4"><span class="text-inside item-txt">';

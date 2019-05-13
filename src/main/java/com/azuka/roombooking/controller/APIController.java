@@ -20,7 +20,7 @@ public class APIController {
 	
 	@GetMapping("/booking/lists")
 	public List<Booking> getAllBooking() {
-	    return bookingRepository.findAll();
+	    return bookingRepository.getBookingListByStatus(1);
 	}
 	
 	@PostMapping("/booking")
